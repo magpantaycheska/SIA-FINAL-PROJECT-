@@ -5,258 +5,545 @@
     <title>BAPCDC</title>
     <link rel="stylesheet" href="style.css">
 
-    <!-- XML Data -->
-    <script type="text/xml" id="projectsXML">
-        <projects>
-            <project>
-                <name>Building Construction</name>
-                <description>High-quality commercial and residential building projects.</description>
-            </project>
-            <project>
-                <name>Road & Infrastructure</name>
-                <description>Durable and safe roadway and infrastructure development.</description>
-            </project>
-            <project>
-                <name>Warehouse Facility</name>
-                <description>Completed warehouse facility designed for logistics optimization.</description>
-            </project>
-            <project>
-                <name>Ongoing Housing Development</name>
-                <description>Affordable housing units currently under construction.</description>
-            </project>
-        </projects>
-    </script>
-
     <!-- Third-party plugin: AOS Animation -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
+    <style>
+        /* RESET */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main.page-content {
+            flex: 1 0 auto; /* Push footer down */
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            background-color: #f2f2f200;
+        }
+
+        .hero-content {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* spacing between logo and text */
+    max-width: 1200px;
+    width: 100%;
+    flex-wrap: nowrap; /* prevent wrapping so it's always in a row */
+}
+
+.hero-left img {
+    width: 200px; /* smaller logo */
+    height: auto;
+}
+
+.hero-right h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.hero-right p {
+    font-size: 18px;
+    color: #ff7518;
+}
+
+
+        /* SECTION CARDS */
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .overview-card {
+            background: #ffffff04;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .address-sections-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .address-section {
+            flex: 1 1 300px;
+            background: #ffffff04;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        /* Mission & Vision */
+        .mission-vision-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .mission-vision-container .overview-card {
+            flex: 1 1 300px;
+        }
+
+        .projects-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin: 0;
+}
+
+.project-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff04;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 15px;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #032251;
+    color: #fff;
+    width: 100%;
+    padding: 60px 0 40px 0; /* full-width padding */
+    font-family: Arial, sans-serif;
+}
+
+.footer-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px; /* spacing between left and right sections */
+    padding: 0 20px; /* inner padding for edges */
+}
+
+/* Logo and description side by side */
+.footer-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; /* space between logo and description */
+    flex: 0 1 auto;
+}
+
+.footer-left .footer-logo {
+    width: 200px;
+    height: auto; 
+    flex-shrink: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.footer-left .company-desc {
+    line-height: 1.8;
+    color: #fff;
+    flex: 1; 
+    font-size: 15px;
+    text-align: justify; /* description justified */
+}
+
+/* Right side links */
+.footer-right {
+    display: flex;
+    gap: 80px;
+    flex: 2 1 500px;
+    flex-wrap: wrap;
+    justify-content: center; /* center links when full screen */
+    text-align: center;
+}
+
+.footer-right .links {
+    min-width: 150px;
+}
+
+.footer-right .links h4 {
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.footer-right .links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-right .links ul li {
+    margin: 8px 0;
+}
+
+.footer-right .links ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-right .links ul li a:hover {
+    color: #ffa500; /* highlight color on hover */
+    transform: translateX(3px);
+}
+
+/* Footer bottom */
+.footer-bottom {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+    .footer-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    .footer-left {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .footer-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-left .footer-logo {
+        width: 120px;
+    }
+}
+
+
+
+    </style>
 </head>
 
 <body>
+<main class="page-content">
 
-<!-- HERO SECTION -->
-<section class="hero" data-aos="fade-down">
-    <div class="hero-content">
+    <header class="site-header">
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#overview">Who We Are</a></li>
+                <li><a href="#projects">Our Projects</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#business-address">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>    
 
-        <!-- LEFT: IMAGE -->
-        <div class="hero-left">
-            <img src="https://magandangbahay.com/wp-content/uploads/2023/06/BAPCDC-Logo-768x575.webp" alt="BAP Hero Image">
+    <!-- HERO -->
+    <section class="hero" data-aos="fade-up">
+        <div class="hero-content">
+            <div class="hero-left">
+                <img src="https://magandangbahay.com/wp-content/uploads/2023/06/BAPCDC-Logo-768x575.webp" alt="BAP Hero Image">
+            </div>
+            <div class="hero-right">
+                <h1>BAP CONSTRUCTION AND DEVELOPMENT CORPORATION</h1>
+                <p>Building a Stronger Future</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPANY OVERVIEW -->
+     
+    <section class="section" id="overview" data-aos="fade-up">
+        <h2>Company Overview</h2>
+        <p>BAP Construction and Development Corporation is a trusted construction company providing 
+        quality infrastructure, engineering solutions, and project management services for various industries.</p>
+        <div class="overview-card" data-aos="fade-up">
+            <h3>Company History</h3>
+            <p>The BAP Construction and Development Corporation has more than three prolific decades of experience in the Construction Industry founded by Mr. Benjamin A. Perez on March 2, 1993, under BAP Con- struction as a sole proprietor. Mr. Benjamin A. Perez’s Eldest Son, Marvin Jay B. Perez followed in the footsteps of his father as he was introduced to the construction business at an early age.  In 2007, Marvin Jay Officially joined the company after being licensed as Civil Engineer and Materials Engineer I and took over the construction busi- ness’ management in 2014. From our humble beginnings, BAP Con- struction has expanded to become one of the established major con- tractors in the construction business.</p>
+            <p>Our commitment to innovation and excellence led us to our ac- complished goals. The company upgraded from Category D to A and then to Category AAA. The company name changed from BAP Con- struction to BAP Construction and Development Corporation in 2013. The company has continued to see great potential in furthering its expansion by opening the main office in Alabang, Muntinlupa City in 2023 to reach out to more clients.</p>
+            <p>We are currently a PCAB accredited contractor since 1993; with the PCAB license no. 16215. The SEC-registered contractor with Sec. Registration number CS201222782.</p>
+            <p> We at BAP Construction and Development Corporation are ac- customed to constructing, rehabilitating, and improving roads, bridges, water supply, flood control and drainage systems, multi-purpose build- ings, asphalt overlay, and other related vertical and horizontal civil structures.</p>
+            <p>We pride ourselves on our personal and individual approach to the improvements and constructions which is always taken to achieve high-standard professional projects, dealing with private and govern- ment  institutions.  Acquired  through  the  rich  experience  and knowledge we have are our successful projects that not only meet the customer’s requirements but are finished to the
+                highest standard.</p>
+                
         </div>
 
-        <!-- RIGHT: TEXT -->
-        <div class="hero-right">
-            <h1>BAP CONSTRUCTION AND DEVELOPMENT CORPORATION</h1>
-            <p>Building a Stronger Future</p>
+        <div class="mission-vision-container">
+            <div class="overview-card" data-aos="fade-right">
+                <h3>Mission</h3>
+                <p>We are commited to leading the industry in honesty, safety, integrity and exceeding our customer's expectation and to provide an outstanding, cost efficient and reliable service to every project.</p>
+            </div>
+            <div class="overview-card" data-aos="fade-right">
+                <h3>Vision</h3>
+                <p>We at BAP Construction and Development Corporation eagerly anticipate taking on future challenges and obstacles in the construction industry. Our aim is to become widely admired as a construction company that consistently adds value and wisdom to all the services we provide to our clients.</p>
+            </div>
         </div>
+    </section>
 
+    <!-- OUR CLIENTS -->
+<section class="section" id="clients" data-aos="fade-right">
+    <h2>Our Clients</h2>
+    <div class="clients-grid">
+        <!-- Example logos -->
+        <img src="https://cdn.playbook.vc/media/thumbnails/Logo_-_Filinvest_Development_Corporation_3_7Uznwvu.png?Expires=1726318082&Signature=ArgTVEcYh6mZIHGtCAcxBxSstC2nA~I5HIld9vgIPjNpTrvLT2XVpZQVpevGo4Eac8uNSwu7yDwMYXBsSw0Ogk7lIOhJ1Y0czUnw~cV0b2-FHBJRmaFW0dUchGUhBfea4sDfkDgmEah-4doyeXqHNWc2rtGsWtGgSroDeDSqb-4jH2g6H8YSz5lj0OxkZvZYRa0GTjOrcV7~iwU9poYT7bePC9ElW1pNGLtGZKHbyhFDO5aUNEO3CmQbqi~lRaeTIwi1-6Apx2-9gJ9Qz0bP~564CHSQ0DQ4m0qhSzZuT7pMjeSotCAokvWn6PeHLLnecfaoIyUaegFe0f4jk3UpNw__&Key-Pair-Id=K1EZH924FG48TE" alt="Client 1 Logo">
+        <img src="https://kaja.ph/admin/v2/images/NU/2-logo.png" alt="Client 2 Logo">
+        <img src="https://kaja.ph/admin/v2/images/NU/13-logo.png" alt="Client 3 Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Universal_Robina_logo_2016.svg/1200px-Universal_Robina_logo_2016.svg.png" alt="Client 4 Logo">
+        <img src="https://wsi.ph/wp-content/uploads/2018/06/new-logo-300X80.png" alt="Client 5 Logo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmIGO6wwYXZNpV1RNxWtUCaI3K78iyDSO6TQ&s" alt="Client 6 Logo">
+        <img src="https://products.pioneer.com.ph/homeinsurance/assets/images/logos/pioneer_logo.png" alt="Client 7 Logo">
+        <img src="https://uncaccoalition.org/images/southeast-asia/nassa.png" alt="Client 8 Logo">
+        <img src="https://www.nia.gov.ph/sites/default/files/2020-nia-logo_0.png" alt="Client 9 Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Makati_City.svg/2048px-Makati_City.svg.png" alt="Client 10 Logo">
+        <img src="https://tanauancity.gov.ph/logo.png" alt="Client 11 Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Department_of_Public_Works_and_Highways_%28DPWH%29.svg/1200px-Department_of_Public_Works_and_Highways_%28DPWH%29.svg.png" alt="Client 12 Logo">
+        <img src="https://santarosacity.gov.ph/assets/img/logo-footer.png" alt="Client 13 Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Seal_of_San_Pedro%2C_Laguna.png" alt="Client 14 Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/ur/b/b9/Malvar_Batangas.png" alt="Client 15 Logo">
+        <img src="https://www.likhainternet.com/wp-content/uploads/2018/01/LikhaInternet-Portfolio-Mataasnakahoy-1200x675.jpg" alt="Client 16 Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Metro_Manila_Development_Authority_%28MMDA%29.svg/1200px-Metro_Manila_Development_Authority_%28MMDA%29.svg.png" alt="Client 17 Logo">
+        <img src="https://scontent.fmnl37-1.fna.fbcdn.net/v/t39.30808-6/494510892_1095413069285167_8819779376998065170_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE73Ly6zZ6HUaUm6bt-Mc9aKzS921u50AorNL3bW7nQCmupii_d8aRISUzYaUCMkzh0Q16dnhnhKy3K7nrcsO5z&_nc_ohc=1SJSAR4DgNkQ7kNvwGIM_ZO&_nc_oc=AdmQUeZM4HMK9qEn3VmfPoTaOh0PV2lU54nbiOdgIx29gEvHsWS4jA0TtQ4ow1lQ0Fk&_nc_zt=23&_nc_ht=scontent.fmnl37-1.fna&_nc_gid=eQVekZEQH0gE5MZdcx1N3w&oh=00_AfjgJtQ-xmbX_h8byaS8eKl3TZSefchnU4UL4Aken3uMgA&oe=6929CC46" alt="Client 18 Logo">
+        <img src="https://allysonmaetubtub.github.io/Web-Design-Project/LVCC%20Logo.png" alt="Client 19 Logo">
+        <img src="https://pbs.twimg.com/profile_images/2453395640/f8mb40jbwzmizqpwkffz_400x400.jpeg" alt="Client 20 Logo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQwmd8orGozzklDyLTk1jq6bm8MCubsCisGw&s" alt="Client 21 Logo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf2rdvYhZkIItc31n66QeWl3UVO0TCE4CY3w&s" alt="Client 22 Logo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqHe5KL4-IxSnJgEMTabsNzMymLxFybCQD5A&s" alt="Client 23 Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/99/UNTV-Logo-2016.svg/1200px-UNTV-Logo-2016.svg.png" alt="Client 24 Logo">
+        <img src="https://www.mcgi.org/wp-content/uploads/2020/10/Members-Church-Of-God-International-Official-Logo-MCGI.org_.png" alt="Client 25 Logo">
     </div>
 </section>
 
-   <!-- COMPANY OVERVIEW -->
-<section class="section" id="overview" data-aos="fade-up">
-    <h2>Company Overview</h2>
-    <p>BAP Construction and Development Corporation is a trusted construction company providing 
-    quality infrastructure, engineering solutions, and project management services for various industries.</p>
+<section class="section" id="projects" data-aos="fade-right">
+        <h2>Our Projects</h2>
+        <div class="projects-wrapper">
+            <div class="project-card">
+                <img src="https://scontent.fmnl3-4.fna.fbcdn.net/v/t39.30808-6/489155212_1117969693678811_1854441715935198003_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF4ft0H-8x4hizCXh0EMk5lCS3fWaCfnKcJLd9ZoJ-cp6pvCKrtLIrX79ZnWBFoupwK6HS_mQSw1RM8yBUhL4En&_nc_ohc=RxWU0mixvz4Q7kNvwGihrq6&_nc_oc=Adlt7h-c4mnoqCuLzfODd4UNTI2pcBSy_fMAfOp1vZR2_ZabJsYBcCBmt80QT5iDIjw&_nc_zt=23&_nc_ht=scontent.fmnl3-4.fna&_nc_gid=u08lrqirk3BFiyZvQxWp4A&oh=00_AfiWqvlVhTbOKD_8nbc-dlrzLAlnSn_oT5OtKv1ux4I0lw&oe=6929B6C4" alt="Project 1">
+                <div class="project-info">
+                    <h4>Filinvest Futura East Condo Building A</h4>
+                    <p>Cainta, Rizal</p>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8q33exLpHDzPcmB3UzeV90mmRNVapAXRTiA&s" alt="Project 2">
+                <div class="project-info">
+                    <h4>MCGI Chapel</h4>
+                    <p>Apalit, Pampanga</p>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <img src="https://mcgi.org/wp-content/uploads/2018/05/Dancing-Fountain.jpg" alt="Project 3">
+                <div class="project-info">
+                    <h4>Dancing Fountain Park</h4>
+                    <p>Apalit, Pampanga</p>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <img src="https://meinhardt.ph/wp-content/uploads/2018/06/untv.jpg" alt="Project 4">
+                <div class="project-info">
+                    <h4>UNTV Broadcast Center</h4>
+                    <p>Edsa Quezon City</p>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlQdUtHCuuNYc9BRpSLIRiLRpT2xeaV9CkxQ&s" alt="Project 5">
+                <div class="project-info">
+                    <h4>Divine Love General Hospital</h4>
+                    <p>Lipa City, Batangas</p>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <img src="https://cbcpnews.net/cbcpnews/wp-content/uploads/2021/11/Caritas-Philippines-Academy-1280x640.jpg" alt="Project 6">
+                <div class="project-info">
+                    <h4>CBCP Development Center</h4>
+                    <p>Tagaytay City</p>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <img src="https://scontent.fmnl3-4.fna.fbcdn.net/v/t39.30808-6/499238645_1123245273175175_3042308947248679965_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHaLNEnUdgZELLVBkQbPVIqFV8jHXrdOncVXyMdet06dyQNvqcmYj5ULmBj1tIgS0npCOgIkkoNyxbE_ubCbsR-&_nc_ohc=ZltbtNYQzQcQ7kNvwGUyasM&_nc_oc=AdlTvr7spSN86EVKDH5xa2vVhVMZjYv3AWWTNvXE8O8s5oSz1ZOyyWQBWNgh_vxa794&_nc_zt=23&_nc_ht=scontent.fmnl3-4.fna&_nc_gid=kEmFhmFBRxJlPNwYeJ6avw&oh=00_Afhqbaid_UF6P1xYHGEZ4BsJxnUQTvpmgsh9fw3kpaMMhg&oe=6929D33B" alt="Project 7">
+                <div class="project-info">
+                    <h4>Rizal Community Complex</h4>
+                    <p>Makati City</p>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <img src="https://www.usgbc.org/sites/default/files/2025-05/250204%20-%20Pioneer%20Hosue%20Manila.jpg" alt="Project 8">
+                <div class="project-info">
+                    <h4>Pioneer Insurance Building</h4>
+                    <p>Binondo Manila</p>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <img src="https://cathedralofpraisemanila.com.ph/wp-content/uploads/2021/02/Events_4Real4.jpg" alt="Project 9">
+                <div class="project-info">
+                    <h4>Cathedral of Praise South Campus</h4>
+                    <p>Las Piñas City</p>
+                </div>
+            </div>
+    </section>
 
-  
-    <div class="overview-card" data-aos="fade-right">
-        <h3>Business Address</h3>
-        <div class="address-sections-container">
-            <!-- Metro Manila Head Office -->
-            <div class="address-section">
-                <h4>METRO MANILA HEAD OFFICE</h4>
-                <p>704 Richville Corporate Center, Madrigal Business Park, Ayala Alabang, Muntinlupa City</p>
-                <p>Contact Number: 02-8353-8488</p>
-                <p>Email Address: admin@bapcdc.com</p>
-            </div>
-    
-            <!-- Provincial Office -->
-            <div class="address-section">
-                <h4>PROVINCIAL OFFICE</h4>
-                <p>133 Yatco Village, Barangay 7, Tanauan City, Batangas</p>
-                <p>Contact Number: 043-778-5686</p>
-            </div>
-    
-            <!-- Motorpool -->
-            <div class="address-section">
-                <h4>MOTORPOOL</h4>
-                <p>Collantes St., Barangay 7, Tanauan City, Batangas</p>           
-            </div>
+<!-- NEWS SECTION -->
+<section class="section" id="news" data-aos="fade-right">
+    <h2>News</h2>
+    <div class="overview-card">
+        <h3>Latest Updates</h3>
+        <p>Check out our latest projects, milestones, and company announcements here.</p>
+    </div>
+</section>
+
+   <!-- BUSINESS ADDRESS -->
+<section class="section" id="business-address" data-aos="fade-right">
+    <h2>Contact Us</h2>
+    <div class="address-sections-container">
+        <div class="address-section">
+            <h4>METRO MANILA HEAD OFFICE</h4>
+            <p>704 Richville Corporate Center, Madrigal Business Park, Ayala Alabang, Muntinlupa City</p>
+            <p>Contact Number: 02-8353-8488</p>
+            <p>Email Address: admin@bapcdc.com</p>
+        </div>
+        <div class="address-section">
+            <h4>PROVINCIAL OFFICE</h4>
+            <p>133 Yatco Village, Barangay 7, Tanauan City, Batangas</p>
+            <p>Contact Number: 043-778-5686</p>
+        </div>
+        <div class="address-section">
+            <h4>MOTORPOOL</h4>
+            <p>Collantes St., Barangay 7, Tanauan City, Batangas</p>           
         </div>
     </div>
+</section>
+
+
+    
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-left">
+            <img src="https://magandangbahay.com/wp-content/uploads/2023/06/BAPCDC-Logo-768x575.webp" alt="BAP Logo" class="footer-logo">
+        </div>
+        <div class="footer-right">
+            <div class="links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#overview">About Us</a></li>                </ul>
+            </div>
+            <div class="links">
+                <h4>News</h4>
+                <ul>
+                    <li><a href="#news">Latest Updates</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="#business-address">Support</a></li>
+                </ul>
+            </div>
             
-       <!-- Company History Card -->
-<div class="overview-card" data-aos="fade-left">
-    <h3>Company History</h3>
-    <p>
-        The BAP Construction and Development Corporation has more than three prolific decades of experience in the construction industry, founded by Mr. Benjamin A. Perez on March 2, 1993, under BAP Construction as a sole proprietor. Mr. Benjamin A. Perez’s eldest son, Marvin Jay B. Perez, followed in the footsteps of his father as he was introduced to the construction business at an early age. In 2007, Marvin Jay officially joined the company after being licensed as Civil Engineer and Materials Engineer I and took over the construction business’ management in 2014. From our humble beginnings, BAP Construction has expanded to become one of the established major contractors in the construction business.
-    </p>
-    <p>
-        Our commitment to innovation and excellence led us to our accomplished goals. The company upgraded from Category D to A and then to Category AAA. The company name changed from BAP Construction to BAP Construction and Development Corporation in 2013. The company has continued to see great potential in furthering its expansion by opening the main office in Alabang, Muntinlupa City in 2023 to reach out to more clients.
-    </p>
-    <p>
-        We are currently a PCAB accredited contractor since 1993, with the PCAB license no. 16215. The SEC-registered contractor with Sec. Registration number CS201222782.
-    </p>
-    <p>
-        We at BAP Construction and Development Corporation are accustomed to constructing, rehabilitating, and improving roads, bridges, water supply, flood control and drainage systems, multi-purpose buildings, asphalt overlay, and other related vertical and horizontal civil structures.
-    </p>
-    <p>
-        We pride ourselves on our personal and individual approach to improvements and constructions, which is always taken to achieve high-standard professional projects, dealing with private and government institutions. Acquired through the rich experience and knowledge we have are our successful projects that not only meet the customer’s requirements but are finished to the highest standard.
-    </p>
-</div>
-
-
-       <!-- Mission & Vision Side by Side -->
-<div class="mission-vision-container">
-    <!-- Mission Card -->
-    <div class="overview-card" data-aos="fade-up">
-        <h3>Mission</h3>
-        <p>We are committed to leading the industry in honesty, safety, integrity, and exceeding our customer's expectation and to provide an outstanding, cost efficient and reliable service to every project.</p>
+    <div class="footer-bottom">
+        © 2025 BAP Construction and Development Corporation. All rights reserved.
     </div>
+</footer>
 
-    <!-- Vision Card -->
-    <div class="overview-card" data-aos="fade-up">
-        <h3>Vision</h3>
-        <p>We at BAP Construction and Development Corporation eagerly anticipate taking on future challenges and obstacles in the construction industry. Our aim is to become widely admired as a construction company that consistently adds value and wisdom to all the services we provide to our clients.</p>
-    </div>
-</div>
+<!-- AOS Plugin JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>AOS.init();</script>
 
+<script>
+   // XML Parsing for Projects Section
+const xmlText = document.getElementById("projectsXML").innerHTML;
+const parser = new DOMParser();
+const xml = parser.parseFromString(xmlText, "text/xml");
+const projects = xml.getElementsByTagName("project");
+const container = document.getElementById("project-container");
 
-<section class="section" id="projects" data-aos="fade-up">
-    <h2>Our Projects</h2>
-    <div class="projects-wrapper">
-        <div class="projects-category">
-            <div class="project-container">
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t39.30808-6/488921106_1113852054090575_2913702575562404780_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFy-J4_fIjdZDf3kBr9MKClS4x9mbaasulLjH2Ztpqy6VtEjvvCC9BTlr3I1-J-6eFAuBgvWiGxPxuwdsOE5pOS&_nc_ohc=SkAaVrqvZEQQ7kNvwGFZ3v6&_nc_oc=AdnnWXeC9Tw1_xIWFGDURlCuDJ4QYBicfT-gNIqJfCmclT7aKbE-1V0DA1vIuSxoZYs&_nc_zt=23&_nc_ht=scontent.fmnl13-2.fna&_nc_gid=Tc-mjFV9cysdZxrHbyTj9w&oh=00_AfjkUtNANJtfECyO6upiAyVPpiAVqonHSuqTAQb8-0gi_g&oe=69264EB1" alt="Completed Project 1">
-                    </div>
-                    <div class="project-info">
-                        <h4>Filinvest Futura East Condo Building A</h4>
-                        <p>Cainta, Rizal</p>
-                    </div>
-                </div>
+// Loop through XML projects and add cards
+for (let i = 0; i < projects.length; i++) {
+    let name = projects[i].getElementsByTagName("name")[0].textContent;
+    let description = projects[i].getElementsByTagName("description")[0].textContent;
 
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8q33exLpHDzPcmB3UzeV90mmRNVapAXRTiA&s" alt="Completed Project 2">
-                    </div>
-                    <div class="project-info">
-                        <h4>MCGI Chapel</h4>
-                        <p>Apalit, Pampanga</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://mcgi.org/wp-content/uploads/2018/05/Dancing-Fountain.jpg" alt="Completed Project 3">
-                    </div>
-                    <div class="project-info">
-                        <h4>Dancing Fountain Park</h4>
-                        <p>Apalit, Pampanga</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://meinhardt.ph/wp-content/uploads/2018/06/untv.jpg" alt="Completed Project 4">
-                    </div>
-                    <div class="project-info">
-                        <h4>UNTV Broadcast Center</h4>
-                        <h4>Structural of 5 remaining levels</h4>
-                        <p>Edsa Quezon City</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlQdUtHCuuNYc9BRpSLIRiLRpT2xeaV9CkxQ&s" alt="Completed Project 5">
-                    </div>
-                    <div class="project-info">
-                        <h4>Divine Love General Hospital</h4>
-                        <p>Lipa City, Batangas</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://cbcpnews.net/cbcpnews/wp-content/uploads/2021/11/Caritas-Philippines-Academy-1280x640.jpg" alt="Completed Project 6">
-                    </div>
-                    <div class="project-info">
-                        <h4>CBCP Development Center</h4>
-                        <p>Tagaytay City</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/499238645_1123245273175175_3042308947248679965_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHaLNEnUdgZELLVBkQbPVIqFV8jHXrdOncVXyMdet06dyQNvqcmYj5ULmBj1tIgS0npCOgIkkoNyxbE_ubCbsR-&_nc_ohc=Lg654chNLo4Q7kNvwFO3RtT&_nc_oc=AdmkSZSeWer7Kr0n3IM4gGKZ2L24E3Sn2-bTorxMgPyyjXA-JADcBcbfVVHeHti2hsc&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=pKjNmdD21vcNlIGQVgfw2Q&oh=00_AfhzREY9ALqKG75yJd_E41clucJKIFx2QRkcKy4ZGGO1-w&oe=69264F3B" alt="Completed Project 7">
-                    </div>
-                    <div class="project-info">
-                        <h4>Rizal Community Complex</h4>
-                        <p>Makati City</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://www.usgbc.org/sites/default/files/2025-05/250204%20-%20Pioneer%20Hosue%20Manila.jpg" alt="Completed Project 8">
-                    </div>
-                    <div class="project-info">
-                        <h4>Pioneer Insurance Building</h4>
-                        <p>Binondo Manila</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://cathedralofpraisemanila.com.ph/wp-content/uploads/2021/02/Events_4Real4.jpg" alt="Completed Project 9">
-                    </div>
-                    <div class="project-info">
-                        <h4>Cathedral of Praise South Campus</h4>
-                        <p>Las Piñas City</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmy_deaE61YcPMF232BvoIz8vfYj1-mAxU2Q&s" alt="Completed Project 10">
-                    </div>
-                    <div class="project-info">
-                        <h4>BES House of Chicken</h4>
-                        <p>Apalit, Pampanga</p>
-                    </div>
-                </div>
-            </div>
+    container.innerHTML += `
+        <div class="project-card" data-aos="zoom-in">
+            <h3>${name}</h3>
+            <p>${description}</p>
         </div>
-    </div>    
-</section>
+    `;
+}
+document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if(target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+    
+const slideElements = document.querySelectorAll('.slide-right');
 
+function revealOnScroll() {
+    const windowHeight = window.innerHeight;
 
-    <!-- AOS Plugin JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>AOS.init();</script>
-
-    <script>
-        // XML Parsing for Projects Section
-        const xmlText = document.getElementById("projectsXML").innerHTML;
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(xmlText, "text/xml");
-
-        const projects = xml.getElementsByTagName("project");
-        const container = document.getElementById("project-container");
-
-        for (let i = 0; i < projects.length; i++) {
-            let name = projects[i].getElementsByTagName("name")[0].textContent;
-            let description = projects[i].getElementsByTagName("description")[0].textContent;
-
-            container.innerHTML += `
-                <div class="project-card" data-aos="zoom-in">
-                    <h3>${name}</h3>
-                    <p>${description}</p>
-                </div>
-            `;
+    slideElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if(top < windowHeight - 100){ 
+            el.classList.add('active'); // triggers animation
         }
-    </script>
+    });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll); // for elements already in view
+</script>
 
 </body>
 </html>
