@@ -274,6 +274,7 @@
                 <li><a href="#projects">Our Projects</a></li>
                 <li><a href="#news">News</a></li>
                 <li><a href="#business-address">Contact Us</a></li>
+                <li><a href="#survey">Rate Us</a></li>
             </ul>
         </nav>
     </header>    
@@ -460,9 +461,43 @@
     </div>
 </section>
 
+<!-- ==================== SURVEY SECTION ==================== -->
+<section id="survey" class="section survey-section">
+    <h2 class="section-title">Survey Form</h2>
 
-    
-</main>
+    <form class="survey-form" onsubmit="showPopup(event)">
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="rating">Rate our service:</label>
+        <select id="rating" required>
+            <option value="">Select rating</option>
+            <option>Excellent</option>
+            <option>Good</option>
+            <option>Average</option>
+            <option>Poor</option>
+        </select>
+
+        <label for="message">Comments:</label>
+        <textarea id="message" rows="4"></textarea>
+
+        <button type="submit">Submit Survey</button>
+    </form>
+</section>
+
+<!-- POPUP -->
+<div id="surveyPopup" class="popup">
+    <div class="popup-content">
+        <h3>Survey Submitted</h3>
+        <p>Thank you!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -543,7 +578,22 @@ function revealOnScroll() {
 
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll); // for elements already in view
+function showPopup(event) {
+        event.preventDefault(); // prevents page reload
+        document.getElementById("surveyPopup").style.display = "flex";
+    }
+
+function showPopup(event) {
+    event.preventDefault(); // prevents page reload
+    document.getElementById("surveyPopup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("surveyPopup").style.display = "none";
+}
+
 </script>
+
 
 </body>
 </html>
